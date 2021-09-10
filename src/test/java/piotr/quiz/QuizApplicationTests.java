@@ -1,10 +1,10 @@
-package piotr.test;
+package piotr.quiz;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TestApplicationTests {
+class QuizApplicationTests {
 
 	@Test
 	void contextLoads() {

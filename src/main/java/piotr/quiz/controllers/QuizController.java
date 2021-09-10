@@ -1,22 +1,22 @@
-package piotr.test.controllers;
+package piotr.quiz.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import piotr.test.entities.Test;
-import piotr.test.services.TestService;
+import piotr.quiz.entities.Quiz;
+import piotr.quiz.services.QuizService;
 
 @RestController
-@RequestMapping("/tests")
+@RequestMapping("/quizes")
 @RequiredArgsConstructor
-public class TestController {
+public class QuizController {
 
-    private final TestService testService;
+    private final QuizService quizService;
 
     @GetMapping("/{id}")
-    public Test getTest(@PathVariable Long id) {
-        return this.testService.getTest(id);
+    public Quiz getQuiz(@PathVariable Long id) {
+        return this.quizService.getQuiz(id);
     }
 }
