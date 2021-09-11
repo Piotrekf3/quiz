@@ -1,12 +1,11 @@
 package piotr.quiz.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import piotr.quiz.entities.Quiz;
 import piotr.quiz.services.QuizService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/quizes")
@@ -18,5 +17,15 @@ public class QuizController {
     @GetMapping("/{id}")
     public Quiz getQuiz(@PathVariable Long id) {
         return this.quizService.getQuiz(id);
+    }
+
+    @GetMapping()
+    public List<Quiz> getQuizes() {
+        return this.quizService.getQuizes();
+    }
+
+    @PostMapping()
+    public void addQuiz(@RequestBody Quiz quiz) {
+        this.quizService.saveQuiz(quiz);
     }
 }

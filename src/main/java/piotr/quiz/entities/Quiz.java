@@ -2,9 +2,8 @@ package piotr.quiz.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,8 +14,14 @@ import javax.persistence.Id;
 public class Quiz {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    private String name;
+
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
 
     @Override
     public boolean equals(Object o) {

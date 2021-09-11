@@ -10,14 +10,17 @@ import piotr.quiz.entities.Quiz;
 import piotr.quiz.repositories.QuizRepository;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-class QuizServiceImplTests {
+class QuizServiceImplTest {
 
     @Mock
     QuizRepository quizRepository;
@@ -45,5 +48,23 @@ class QuizServiceImplTests {
                 .thenReturn(Optional.empty());
 
         Assertions.assertThrows(EntityNotFoundException.class, () -> quizService.getQuiz(1L));
+    }
+
+    @Test
+    void getQuizes() {
+        List<Quiz> expectedQuizes = new ArrayList<>();
+        expectedQuizes.add(Quiz.builder().id(1L).build());
+        expectedQuizes.add(Quiz.builder().id(2L).build());
+
+        when(quizRepository.findAll()).thenReturn(expectedQuizes);
+
+        Assertions.assertEquals(expectedQuizes, quizService.getQuizes());
+    }
+
+    @Test
+    void saveQuiz() {
+        Quiz quiz = Quiz.builder().id(1L).build();
+        quizService.saveQuiz(quiz);
+        verify(quizRepository).save(quiz);
     }
 }

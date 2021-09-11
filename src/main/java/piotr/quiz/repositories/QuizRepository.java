@@ -9,5 +9,4 @@ import java.util.Optional;
 @Transactional
 public interface QuizRepository extends CrudRepository<Quiz, Long> {
 
-    Optional<Quiz> findById(Long id);
 }
