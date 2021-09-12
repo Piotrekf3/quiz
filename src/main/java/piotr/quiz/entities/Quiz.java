@@ -1,9 +1,12 @@
 package piotr.quiz.entities;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,11 +20,16 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @NotNull
+    @Column(nullable = false)
     private String name;
 
+    @CreationTimestamp
     @Column(name = "creation_date")
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
+
+    @OneToMany(mappedBy = "quiz")
+    private List<Question> questions;
 
     @Override
     public boolean equals(Object o) {
