@@ -1,5 +1,6 @@
 package piotr.quiz.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,7 +18,6 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @NotNull
     @Column(nullable = false)
     private String title;
@@ -25,7 +25,8 @@ public class Question {
     @Column
     private String text;
 
-    @ManyToOne()
+    @JsonBackReference
+    @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_id", referencedColumnName = "id")
     private Quiz quiz;
 

@@ -14,7 +14,7 @@ public class QuizController {
 
     private final QuizService quizService;
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Quiz getQuiz(@PathVariable Long id) {
         return this.quizService.getQuiz(id);
     }

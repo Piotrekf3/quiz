@@ -1,5 +1,6 @@
 package piotr.quiz.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -28,6 +29,7 @@ public class Quiz {
     @Column(name = "creation_date")
     private LocalDate creationDate;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
