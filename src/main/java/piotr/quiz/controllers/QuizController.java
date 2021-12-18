@@ -2,9 +2,11 @@ package piotr.quiz.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import piotr.quiz.dto.SaveQuizDto;
 import piotr.quiz.entities.Quiz;
 import piotr.quiz.services.QuizService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +27,7 @@ public class QuizController {
     }
 
     @PostMapping()
-    public void addQuiz(@RequestBody Quiz quiz) {
-        this.quizService.saveQuiz(quiz);
+    public void addQuiz(@RequestBody SaveQuizDto saveQuizDto) {
+        this.quizService.saveQuiz(saveQuizDto.toQuiz());
     }
 }

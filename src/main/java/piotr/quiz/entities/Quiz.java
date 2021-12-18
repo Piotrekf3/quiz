@@ -29,6 +29,7 @@ public class Quiz {
     @Column(name = "creation_date")
     private LocalDate creationDate;
 
+    @Singular
     @JsonManagedReference
     @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
